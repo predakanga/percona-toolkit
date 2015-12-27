@@ -1871,7 +1871,7 @@ section_percona_server_features () {
             "$(feat_on_renamed "$file" innodb_expand_import innodb_import_table_from_xtrabackup)"
 
    name_val "Fast Server Restarts"  \
-            "$(feat_on_renamed "$file" innodb_auto_lru_dump innodb_buffer_pool_restore_at_startup)"
+            "$(feat_on_renamed "$file" innodb_auto_lru_dump innodb_buffer_pool_restore_at_startup innodb_buffer_pool_load_at_startup)"
    
    name_val "Enhanced Logging"      \
             "$(feat_on "$file" log_slow_verbosity ne microtime)"
