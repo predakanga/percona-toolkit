@@ -2122,6 +2122,9 @@ section_percona_xtradb_cluster () {
 
    name_val "SST Method"      "$(get_var "wsrep_sst_method" "$mysql_var")"
    name_val "Slave Threads"   "$(get_var "wsrep_slave_threads" "$mysql_var")"
+
+   name_val "gache Pool Size"   	"$(get_var "wsrep_gcache_pool_size" "$mysql_var")"
+   name_val "Cert Index Bucket Count"   "$(get_var "wsrep_cert_bucket_count" "$mysql_var")"
    
    name_val "Ignore Split Brain" "$( parse_wsrep_provider_options "pc.ignore_sb" "$mysql_var" )"
    name_val "Ignore Quorum" "$( parse_wsrep_provider_options "pc.ignore_quorum" "$mysql_var" )"
