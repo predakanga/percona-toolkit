@@ -4,7 +4,7 @@ BEGIN {
    die "The PERCONA_TOOLKIT_BRANCH environment variable is not set.\n"
       unless $ENV{PERCONA_TOOLKIT_BRANCH} && -d $ENV{PERCONA_TOOLKIT_BRANCH};
    unshift @INC, "$ENV{PERCONA_TOOLKIT_BRANCH}/lib";
-   $ENV{PTTEST_PRETTY_JSON} = 0;
+   $ENV{PTTEST_PRETTY_JSON} = 1;
 };
 
 use strict;
@@ -17,11 +17,14 @@ require "$trunk/bin/pt-query-digest";
 
 no warnings 'once';
 local $JSONReportFormatter::sorted_json = 1;
-local $JSONReportFormatter::pretty_json = 0;
+local $JSONReportFormatter::pretty_json = 1;
 
 my @args    = qw(--output json);
 my $sample  = "$trunk/t/lib/samples";
 my $results = "t/pt-query-digest/samples/json";
+
+my $escaped_trunk = $trunk;
+$escaped_trunk =~ s/\//\\\//g;
 
 ok(
    no_diff(
@@ -35,7 +38,7 @@ ok(
    no_diff(
       sub { pt_query_digest::main(@args, "$sample/slowlogs/slow002.txt") },
       "$results/slow002.txt",
-      sed => [ qq/'s!$trunk!TRUNK!'/ ],
+      sed => [ qq/'s!$escaped_trunk!TRUNK!'/ ],
    ),
    'json output for slow002'
 ) or diag($test_diff);
