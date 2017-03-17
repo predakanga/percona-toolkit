@@ -23,10 +23,6 @@ my @args    = qw(--output json);
 my $sample  = "$trunk/t/lib/samples";
 my $results = "t/pt-query-digest/samples/json";
 
-my $escaped_trunk = $trunk;
-$escaped_trunk =~ s/\//\\\//g;
-print "trunk: $trunk\n";
-
 ok(
    no_diff(
       sub { pt_query_digest::main(@args, "$sample/slowlogs/empty") },
@@ -39,7 +35,7 @@ ok(
    no_diff(
       sub { pt_query_digest::main(@args, "$sample/slowlogs/slow002.txt") },
       "$results/slow002.txt",
-      sed => [ qq/'s!$escaped_trunk!TRUNK!'/ ],
+      sed => [ qq/'s!$trunk!TRUNK!'/ ],
    ),
    'json output for slow002'
 ) or diag($test_diff);
