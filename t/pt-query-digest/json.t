@@ -25,6 +25,7 @@ my $results = "t/pt-query-digest/samples/json";
 
 my $escaped_trunk = $trunk;
 $escaped_trunk =~ s/\//\\\//g;
+print "trunk: $trunk\n";
 
 ok(
    no_diff(
