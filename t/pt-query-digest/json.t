@@ -38,7 +38,7 @@ ok(
    no_diff(
       sub { pt_query_digest::main(@args, "$sample/slowlogs/slow002.txt") },
       "$results/slow002.txt",
-      sed => [ qq/'s!"name":".*slow002.txt"!"name:"slow002.txt"!''/ ],
+      sed => [ qq/'s!"name":".*slow002.txt"!"name:"slow002.txt"!'/ ],
    ),
    'json output for slow002'
 ) or diag($test_diff);
@@ -47,7 +47,7 @@ ok(
       sub { pt_query_digest::main(qw(--no-vertical-format), @args,
                                   "$sample/slowlogs/slow002.txt") },
       "$results/slow002_no_vertical.txt",
-      sed => [ qq/'s!"name":".*slow002.txt"!"name:"slow002.txt"!''/ ],
+      sed => [ qq/'s!"name":".*slow002.txt"!"name:"slow002.txt"!'/ ],
    ),
    'json output for slow002 with --no-vertical-format'
 ) or diag($test_diff);
@@ -57,7 +57,7 @@ ok(
       sub { pt_query_digest::main(qw(--output json-anon),
          "$sample/slowlogs/slow002.txt") },
       "$results/slow002-anon.txt",
-      sed => [ qq/'s!"name":".*slow002.txt"!"name:"slow002.txt"!''/ ],
+      sed => [ qq/'s!"name":".*slow002.txt"!"name:"slow002.txt"!'/ ],
    ),
    'json-anon output for slow002'
 ) or diag($test_diff);
@@ -66,7 +66,7 @@ ok(
       sub { pt_query_digest::main(qw(--output json-anon --no-vertical-format),
          "$sample/slowlogs/slow002.txt") },
       "$results/slow002-anon_no_vertical.txt",
-      sed => [ qq/'s!"name":".*slow002.txt"!"name:"slow002.txt"!''/ ],
+      sed => [ qq/'s!"name":".*slow002.txt"!"name:"slow002.txt"!'/ ],
    ),
    'json-anon output for slow002 with --no-vertical-format'
 ) or diag($test_diff);
@@ -78,7 +78,7 @@ ok(
       sub { pt_query_digest::main(qw(--type tcpdump --limit 10 --watch-server 127.0.0.1:12345),
                                   @args, "$sample/tcpdump/tcpdump021.txt") },
       "$results/tcpdump021.txt",
-      sed => [ qq/'s!"name":".*slow002.txt"!"name:"slow002.txt"!''/ ],
+      sed => [ qq/'s!"name":".*slow002.txt"!"name:"slow002.txt"!'/ ],
    ),
    'json output for for tcpdump021',
 ) or diag($test_diff);
@@ -94,7 +94,7 @@ ok(
                qw(--output json))
       },
       "t/pt-query-digest/samples/slow059_report02.txt",
-      sed => [ qq/'s!"name":".*slow059_report02.txt"!"name:"slow059_report02.txt"!''/ ],
+      sed => [ qq/'s!"name":".*slow059_report02.txt"!"name:"slow059_report02.txt"!'/ ],
    ),
    'json output for slow059'
 ) or diag($test_diff);
